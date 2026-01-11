@@ -1,0 +1,8 @@
+This chatbot is built as an EdTech assistant.
+
+RAG stands for Retrieval Augmented Generation.
+RAG improves LLM responses by retrieving relevant information from an external knowledge base.
+
+This project demonstrates a simple RAG chatbot using Next.js and Vercel.
+It answers user questions based on this knowledge file.
+
