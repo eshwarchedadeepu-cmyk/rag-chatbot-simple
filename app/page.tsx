@@ -4,28 +4,36 @@ import { useState } from "react";
 
 export default function Home() {
   const [input, setInput] = useState("");
+  const [image, setImage] = useState<File | null>(null);
   const [messages, setMessages] = useState<any[]>([]);
 
   async function sendMessage() {
-    if (!input) return;
+    if (!input && !image) return;
 
-    const newMessages = [...messages, { role: "user", content: input }];
-    setMessages(newMessages);
+    const formData = new FormData();
+    formData.append("message", input);
+    if (image) formData.append("image", image);
+
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", content: input || "[Image uploaded]" },
+    ]);
+
     setInput("");
+    setImage(null);
 
     const res = await fetch("/api/chat", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: newMessages }),
+      body: formData,
     });
 
     const data = await res.json();
-    setMessages([...newMessages, data]);
+    setMessages((prev) => [...prev, data]);
   }
 
   return (
     <main style={{ padding: 20 }}>
-      <h2>RAG Chatbot (Assignment)</h2>
+      <h2>Multimodal RAG Chatbot</h2>
 
       <div style={{ border: "1px solid #ccc", padding: 10, minHeight: 300 }}>
         {messages.map((m, i) => (
@@ -36,11 +44,20 @@ export default function Home() {
       </div>
 
       <input
+        type="text"
+        placeholder="Ask something..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Ask a question..."
-        style={{ width: "80%", marginTop: 10 }}
+        style={{ width: "70%", marginTop: 10 }}
       />
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files?.[0] || null)}
+        style={{ marginLeft: 10 }}
+      />
+
       <button onClick={sendMessage} style={{ marginLeft: 10 }}>
         Send
       </button>
