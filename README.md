@@ -1,3 +1,4 @@
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,34 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# RAG Chatbot (Simple)
+
+This project is a simple Retrieval Augmented Generation (RAG) chatbot built using Next.js and the Vercel AI SDK.
+
+## Features
+- Text-based chatbot interface
+- Retrieval Augmented Generation (RAG) using embedded documents
+- Deployed on Vercel
+
+## Tech Stack
+- Next.js (App Router)
+- Vercel AI SDK
+- OpenAI / Groq API
+- TypeScript
+
+## Setup Instructions
+
+1. Clone the repository
+2. Install dependencies
+   npm install
+3. Add environment variables
+   OPENAI_API_KEY=your_key_here
+4. Run locally
+   npm run dev
+
+## Deployment
+The application is deployed using Vercel.
+
+## Notes
+This project is created as part of an AI Intern assignment to demonstrate understanding of RAG-based chatbot systems.
+>>>>>>> 207662c13ca86665a83955b7b8a760b3ce2e7165
